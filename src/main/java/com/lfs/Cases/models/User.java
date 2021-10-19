@@ -1,30 +1,34 @@
 package com.lfs.Cases.models;
 
+
 import org.hibernate.annotations.Target;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "items")
-public class Item {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Long id;
+
+    @OneToMany(mappedBy="users")
+    private Set<Item> items;
 
 
     private String name;
-    private Long price;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 
-    public Item() {
+    private String password;
+
+    public User() {
     }
 
-    public Item(String name, Long price) {
+    public User(String name, String password) {
         this.name = name;
-        this.price = price;
+        this.password = password;
     }
 
     public Long getId() {
@@ -43,11 +47,11 @@ public class Item {
         this.name = name;
     }
 
-    public Long getPrice() {
-        return price;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPrice(Long price) {
-        this.price = price;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
