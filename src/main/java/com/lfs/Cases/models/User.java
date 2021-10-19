@@ -4,18 +4,18 @@ package com.lfs.Cases.models;
 import org.hibernate.annotations.Target;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
     private Long id;
 
-    @OneToMany(mappedBy="users")
-    private Set<Item> items;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="user")
+    private List<Item> items;
 
 
     private String name;

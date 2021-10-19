@@ -5,7 +5,6 @@ import org.hibernate.annotations.Target;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "items")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,7 +14,7 @@ public class Item {
     private String name;
     private Long price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
