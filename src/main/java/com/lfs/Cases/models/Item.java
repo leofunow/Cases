@@ -21,9 +21,10 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name, Long price) {
+    public Item(String name, Long price, User user) {
         this.name = name;
         this.price = price;
+        this.user = user;
     }
 
     public Long getId() {
@@ -48,5 +49,13 @@ public class Item {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
